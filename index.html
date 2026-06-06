@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Minarva Biz" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <title>Minarva Biz - Tarateel Al Najah ERP</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #0f172a; }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BaI8sLlu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C2Up71Qv.css">
+  <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(regs) {
+    var hadSW = regs.length > 0;
+    Promise.all(regs.map(function(r) { return r.unregister(); })).then(function() {
+      if ('caches' in window) {
+        caches.keys().then(function(keys) { return Promise.all(keys.map(function(k) { return caches.delete(k); })); })
+          .then(function() { if (hadSW && !sessionStorage.getItem('sw-killed-v15')) { sessionStorage.setItem('sw-killed-v15','1'); window.location.reload(); } });
+      }
+    });
+  });
+}
+</script></head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Service Worker registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .then(reg => console.log('SW registered:', reg.scope))
+            .catch(err => console.log('SW error:', err));
+        });
+      }
+      // Auto redirect to field app if employee phone saved
+      (function() {
+        const stored = localStorage.getItem('emp_phone');
+        if (stored && !window.location.hash.includes('field')) {
+          window.location.hash = 'field';
+        }
+      })();
+    </script>
+  </body>
+</html>
